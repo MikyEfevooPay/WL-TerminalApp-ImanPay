@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true" />
 
 
-    <com.VaultPay.demoui.view.HVScrollView
+    <com.ImanPay.demoui.view.HVScrollView
         android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,11 +32,11 @@
         app:fillViewportV="false"
         app:scrollOrientation="both">
 
-        <com.VaultPay.demoui.view.PaintView
+        <com.ImanPay.demoui.view.PaintView
             android:id="@+id/paint_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.VaultPay.demoui.view.HVScrollView>
+    </com.ImanPay.demoui.view.HVScrollView>
 
 
     <View
@@ -114,7 +114,7 @@
             android:background="@drawable/sign_bg_btn_clicked"
             android:src="@drawable/sign_ic_clear" />
 
-        <com.VaultPay.demoui.view.CircleView
+        <com.ImanPay.demoui.view.CircleView
             android:id="@+id/btn_setting"
             android:layout_width="@dimen/sign_tool_icon_size"
             android:layout_height="@dimen/sign_tool_icon_size"
