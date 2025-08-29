@@ -181,7 +181,7 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
        runOnUiThread(() -> {
            new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog_secondary)
                    .setTitle("Impresión de Ticket")
-                   .setIcon(R.drawable.printer)
+                   .setIcon(R.drawable.copia_ticket)
                    .setPositiveButton("Comercio", (dialog, lis) -> {
                        dialog.dismiss();
                        PrintTicket(PRINT_TYPE.STORE);

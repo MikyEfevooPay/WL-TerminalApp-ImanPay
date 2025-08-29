@@ -176,7 +176,7 @@
         <item name="materialCalendarHeaderSelection">@style/CustomHeaderSelection</item>
 
         <item name="colorSurface">#fff</item>
-        <item name="colorOnSurface">#121212</item>
+        <item name="colorOnSurface">#55ADB0</item>
 <!--        <item name="colorPrimary">#92A8FF</item>-->
         <item name="colorPrimary">#55ADB0</item>
         <item name="colorOnPrimary">#fff</item>
@@ -185,7 +185,7 @@
 
     <style name="Custom_MaterialCalendar.Fullscreen" parent="@style/Widget.MaterialComponents.MaterialCalendar">
         <item name="android:windowFullscreen">false</item>
-        <item name="rangeFillColor">#DFE7FA</item>
+        <item name="rangeFillColor">#DDEFEF</item>
         <item name="dayStyle">@style/CustomWidget_Day</item>
         <item name="daySelectedStyle">@style/CustomSelected</item>
     </style>
@@ -205,8 +205,8 @@
         <item name="itemTextColor">#121212</item>
     </style>
     <style name= "CustomSelected" parent="Widget.MaterialComponents.MaterialCalendar.Day.Selected">
-        <item name="itemFillColor">#262625</item>
-        <item name="itemStrokeColor">#262625</item>
+        <item name="itemFillColor">#55ADB0</item>
+        <item name="itemStrokeColor">#55ADB0</item>
     </style>
 
 <!-- ____________________ styles calendar ____________________-->
