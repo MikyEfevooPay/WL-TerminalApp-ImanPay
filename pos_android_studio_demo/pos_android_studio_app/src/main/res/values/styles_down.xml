@@ -176,7 +176,7 @@
         <item name="materialCalendarHeaderSelection">@style/CustomHeaderSelection</item>
 
         <item name="colorSurface">#fff</item>
-        <item name="colorOnSurface">#55ADB0</item>
+        <item name="colorOnSurface">#121212</item>
 <!--        <item name="colorPrimary">#92A8FF</item>-->
         <item name="colorPrimary">#55ADB0</item>
         <item name="colorOnPrimary">#fff</item>

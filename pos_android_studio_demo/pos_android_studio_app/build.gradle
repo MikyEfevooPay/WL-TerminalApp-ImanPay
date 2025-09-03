@@ -18,7 +18,7 @@ android {
     compileSdk 33
     buildToolsVersion '30.0.3'
     defaultConfig {
-        applicationId 'com.VaultPay.demoui'
+        applicationId 'com.ImanPay.demoui'
         minSdkVersion 17
         targetSdk 31
         versionCode 298
