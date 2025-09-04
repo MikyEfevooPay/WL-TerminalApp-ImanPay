@@ -21,9 +21,9 @@ import java.util.regex.Pattern;
 
 public class Utils {
 	//BASE DE DATOS
-	public static final String TERMINAL_WL_Name = "wl_centralpay";
+	public static final String TERMINAL_WL_Name = "wl_imanpay";
 	//BUCKET CORREO
-	public static final String TERMINAL_WL_Bucket = "centralpay";
+	public static final String TERMINAL_WL_Bucket = "imanpay";
 	//PRODUCCION
 	public static final String TERMINAL_API = "https://efevoopayloadbalancer-ecommerce.com";
 	public static final String TERMINAL_BIN = "https://alphawlapi.efevoopaylbda.com/api/apiv0/agrs/terminales/tpv/bines";

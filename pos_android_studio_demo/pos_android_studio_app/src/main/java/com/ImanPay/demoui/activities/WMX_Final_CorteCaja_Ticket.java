@@ -123,11 +123,11 @@ public class WMX_Final_CorteCaja_Ticket extends BaseActivity implements View.OnC
     }
 
     private void getBody(JSONObject body) throws JSONException {
-        DateFormat formatemail = new SimpleDateFormat("ddMMyyHHmmss");
+        DateFormat formatemail = new SimpleDateFormat("ddMMyyHHmm");
         Date datemail = new Date();
         body.put("correo", currEmail);
         body.put("subject", "Corte de caja");
-        body.put("idemail", "Corte"+formatemail.format(datemail).toString());
+        body.put("idemail", "Corte"+formatemail.format(datemail).toString()+ksn_posId.substring(ksn_posId.length()-8).toString());
         body.put("comercio", Utils.isNull(cursor.getString(9), "N/A"));
         body.put("subtotal", Utils.isNull(corte, "N/A"));
         body.put("propina", Utils.isNull( tip, "N/A"));
