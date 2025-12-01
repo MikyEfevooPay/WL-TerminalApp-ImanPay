@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.VaultPay.demoui",
+  "applicationId": "com.ImanPay.demoui",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 298,
-      "versionName": "1.5.9.13",
+      "versionCode": 300,
+      "versionName": "1.5.9.15",
       "outputFile": "pos_android_studio_app-debug.apk"
     }
   ],
