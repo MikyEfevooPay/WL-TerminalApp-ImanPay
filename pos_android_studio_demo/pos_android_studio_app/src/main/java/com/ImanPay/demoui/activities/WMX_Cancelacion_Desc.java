@@ -29,7 +29,7 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
     LinearLayout cp_ll_content_card,ll_msi;
     AppCompatButton cp_btn_trans_cancelar, cp_btn_trans_final;
     Context mContext;
-    private String card_provider, tipotarjeta,tarjeta;
+    private String card_provider, tipotarjeta,tarjeta, datetime;
     private int transaction_type, trans_id;
     private Intent intent;
     private String ksn_posId;
@@ -76,7 +76,7 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
                 .setCard(cp_tv_card.getText().toString())
                 .setCardType(card_provider)
                 .setCard_provider(tipotarjeta)
-                .setDate_Time(cp_tv_date_time.getText().toString())
+                .setDate_Time(datetime)
                 .setAmount(cp_tv_amount.getText().toString())
                 .setTip(cp_tv_tip.getText().toString())
                 .setTotal(cp_tv_total.getText().toString())
@@ -88,10 +88,13 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
     }
 
     private void initData(Intent intent){
-        String auth,date,time,subtotal,card,redtarj,status,propina,total,msi,aid,arqc, approve;
+        String auth,date,time,subtotal,card,redtarj,status,propina,total,msi,aid,arqc, approve, fecha, segundos;
         auth = intent.getStringExtra("auth");
         date = intent.getStringExtra("date");
         time = intent.getStringExtra("time");
+        fecha = intent.getStringExtra("datetime");
+        segundos = !fecha.equals("") ? fecha.substring(fecha.length() - 3) : fecha;
+        datetime = date + " " + time + segundos;
         subtotal = intent.getStringExtra("subtotal");
         card = intent.getStringExtra("card");
         redtarj = intent.getStringExtra("redtarj");

@@ -21,8 +21,8 @@ android {
         applicationId 'com.ImanPay.demoui'
         minSdkVersion 17
         targetSdk 31
-        versionCode 300
-        versionName '1.5.9.15'
+        versionCode 301
+        versionName '1.5.9.16'
 
         ndk {
             moduleName "serial_port"

@@ -240,6 +240,8 @@ public class WMX_final_ticket_transaction extends BaseActivity implements View.O
             card_provider = "VISA";
         }else if (v_redtarjeta.toUpperCase(Locale.ROOT).equals("AMEX")) {
             card_provider = "AMEX";
+        }else {
+            card_provider = "NA";
         }
     }
 

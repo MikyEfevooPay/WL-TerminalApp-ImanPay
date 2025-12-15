@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="37px"
+    android:paddingTop="28px"
+    android:paddingBottom="28px"
+    android:paddingRight="37px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tp_warning"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_marginBottom="18px"
+            app:srcCompat="@drawable/warning" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24px"
+        android:fontFamily="@font/dm_sans_bold"
+        android:gravity="center"
+        android:text="Advertencia"
+        android:textAlignment="center"
+        android:textColor="#0F0F0F"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans"
+        android:text="Revisa que tu termina cuente con el"
+        android:textColor="#5A5A5A"
+        android:textSize="30px" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans"
+        android:text="rollo suficiente para imprimir"
+        android:textColor="#5A5A5A"
+        android:textSize="30px" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15px"
+        android:layout_marginBottom="15px"
+        android:backgroundTint="#00000033"
+        android:ems="10"
+        android:fontFamily="@font/dm_sans"
+
+        android:gravity="center_horizontal"
+        android:inputType="textPersonName"
+        android:textColor="#5A5A5A"
+        android:textSize="27px" />
+
+    <LinearLayout
+        android:id="@+id/lyt_alert_print_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        >
+
+        <TextView
+            android:id="@+id/txt_alert_print_close_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8px"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="Cerrar"
+            android:textAlignment="center"
+            android:textColor="@color/btn_black"
+            android:textSize="28px" />
+    </LinearLayout>
+
+</LinearLayout>

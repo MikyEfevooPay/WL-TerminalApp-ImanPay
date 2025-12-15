@@ -1,5 +1,5 @@
 package com.ImanPay.demoui.interfaces;
 
 public enum TicketLayoutType {
-    TRANSACTION, CORTE, NONE
+    TRANSACTION, CORTE, HISTORIAL, NONE
 }
