@@ -271,10 +271,10 @@ public class WMX_Final_Historial_Ticket extends BaseActivity implements View.OnC
                 } else {
                     otrocount++;
                 }
-                if(object1.getString("tipotarj").equals("Crédito")){
-                    creditocount++;
-                } else {
+                if(object1.getString("tipotarj").contains("bito")){
                     debitocount++;
+                } else {
+                    creditocount++;
                 }
             }
             totaltransacciones = String.valueOf(count);

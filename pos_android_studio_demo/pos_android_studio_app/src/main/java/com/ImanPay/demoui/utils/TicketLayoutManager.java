@@ -143,7 +143,7 @@ public class TicketLayoutManager {
                 txt_ticket_kposId.setText("Núm. SERIE " + ticket.getKsn_posId());
                 txt_ticket_aid.setText("AID  " + ticket.getAID());
                 txt_ticket_arqc.setText("ARQC  " + Utils.maskText(ticket.getARQC(), 4));
-                if(ticket.getTrans_type().equals(GNTBackEnd.getTitle(GNTBackEnd.TRANS_MSI_TYPE).toUpperCase(Locale.ROOT)) || conpropina.equals("0")) tbl_ticket_tip.setVisibility(View.GONE);
+                if(ticket.getTrans_type().equals(GNTBackEnd.getTitle(GNTBackEnd.TRANS_MSI_TYPE).toUpperCase(Locale.ROOT))) tbl_ticket_tip.setVisibility(View.GONE);
                 break;
             case CORTE:
                 txt_company = layout.findViewById(R.id.txt_company);

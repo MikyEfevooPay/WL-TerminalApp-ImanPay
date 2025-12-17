@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -369,12 +370,12 @@ public class WMX_Transaccion extends BaseActivity implements View.OnClickListene
                 R.style.ThemeOverlay_App_MaterialAlertDialog);
         modalAlert.setView(dialogContentView);
 
-        LinearLayout btn_modal_alert_print_close = dialogContentView.findViewById(R.id.lyt_alert_print_close);
+        AppCompatButton btn_alert_print_close = dialogContentView.findViewById(R.id.btn_alert_print_close);
 
         AlertDialog modalAlterPrintCreate = modalAlert.create();
 
         modalAlterPrintCreate.show();
-        btn_modal_alert_print_close.setOnClickListener(new View.OnClickListener() {
+        btn_alert_print_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 procesaInformacion();

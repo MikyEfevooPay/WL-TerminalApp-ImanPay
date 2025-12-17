@@ -6,7 +6,8 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="37px"
-    android:paddingTop="20px"
+    android:paddingTop="28px"
+    android:paddingBottom="28px"
     android:paddingRight="37px">
 
     <LinearLayout
@@ -68,29 +69,21 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#000000"
+        android:layout_marginBottom="24px"
         android:orientation="horizontal"/>
 
-    <LinearLayout
-        android:id="@+id/lyt_alert_print_close"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:gravity="center"
-        android:layout_marginBottom="20dp"
-        >
-
-        <TextView
-            android:id="@+id/txt_alert_print_close_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8px"
-            android:fontFamily="@font/dm_sans_medium"
-            android:text="Cerrar"
-            android:textAlignment="center"
-            android:textColor="@color/btn_black"
-            android:textSize="28px" />
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_alert_print_close"
+        android:layout_width="339px"
+        android:layout_height="60px"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/dm_sans_bold"
+        android:minHeight="50dip"
+        android:stateListAnimator="@null"
+        android:text="Cerrar"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="22px" />
 
 </LinearLayout>
