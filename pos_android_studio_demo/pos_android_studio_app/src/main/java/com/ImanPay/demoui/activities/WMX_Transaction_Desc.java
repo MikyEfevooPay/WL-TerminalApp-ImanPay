@@ -283,6 +283,12 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         card = intent.getStringExtra("card");
         redtarj = intent.getStringExtra("redtarj");
         tipotarjeta = intent.getStringExtra("tipotarj");
+        TRACE.d("RESULT TIPO: " + tipotarjeta);
+        if(tipotarjeta.equals("null"))
+        {
+            tipotarjeta="Crédito";
+        }
+        TRACE.d("RESULT TIPO: " + tipotarjeta);
         status = intent.getStringExtra("status");
         propina = intent.getStringExtra("propina");
         total = intent.getStringExtra("total");
