@@ -49,7 +49,7 @@ public class ConfigAmex {
         try {
             nuevainit = false;
             CallBack = callBack;
-            String URL = Utils.TPVCONFIGAMEX + "/apiv0/agrs/terminales/tpv";
+            String URL = Utils.TPVCONFIGAMEX + "/api/apiv0/agrs/terminales/tpv";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("snTerminal", ksn_posId);
 

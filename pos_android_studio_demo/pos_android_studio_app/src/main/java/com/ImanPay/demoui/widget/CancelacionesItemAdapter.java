@@ -55,6 +55,8 @@ public class CancelacionesItemAdapter extends RecyclerView.Adapter<Cancelaciones
             myViewHolder.iv_process.setImageResource(R.drawable.visa);
         }else if(_transactions.get(i).get_redtarj().toUpperCase(Locale.ROOT).equals("AMEX")){
             myViewHolder.iv_process.setImageResource(R.drawable.amex);
+        }else{
+            myViewHolder.iv_process.setImageResource(R.drawable.internacional);
         }
 
     }

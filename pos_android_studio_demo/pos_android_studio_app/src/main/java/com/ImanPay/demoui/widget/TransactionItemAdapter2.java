@@ -81,6 +81,8 @@ public class TransactionItemAdapter2 extends RecyclerView.Adapter<TransactionIte
             myViewHolder.iv_process.setImageResource(R.drawable.amex);
         }else if(_transactions.get(i).get_redtarj().toUpperCase(Locale.ROOT).equals("VISA")){
             myViewHolder.iv_process.setImageResource(R.drawable.visa);
+        }else{
+            myViewHolder.iv_process.setImageResource(R.drawable.internacional);
         }
         if(_transactions.get(i).get_tipotxn().equals("CAN") || (_transactions.get(i).get_tipotxn().equals("REV") && _transactions.get(i).get_redtarj().toUpperCase(Locale.ROOT).equals("AMEX"))){
             myViewHolder.iv_status.setImageResource(R.drawable.efevoo_i_grupo_41699);

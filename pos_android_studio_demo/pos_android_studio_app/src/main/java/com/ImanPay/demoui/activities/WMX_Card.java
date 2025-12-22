@@ -2027,9 +2027,9 @@ public class WMX_Card extends BaseActivity implements View.OnClickListener {
                         public void onResponse(JSONObject response) {
                             try {
                                 TRACE.d("UrlBin : " + response.toString());
-                                procesofinal(entrada, entrymode, emv, response.getString("redTarjeta").toString(),
-                                        response.getString("tipoTarjeta").toString(), pan, track2, counter, time_txn,
-                                        response.getString("emisor").toString());
+                                procesofinal(entrada, entrymode, emv, Utils.isnulo(response.getString("redTarjeta").toString()),
+                                        Utils.isnulo(response.getString("tipoTarjeta").toString()), pan, track2, counter, time_txn,
+                                        Utils.isnulo(response.getString("emisor").toString()));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

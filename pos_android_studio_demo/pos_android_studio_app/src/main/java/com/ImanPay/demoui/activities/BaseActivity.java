@@ -210,7 +210,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
                 ticketHandler.postDelayed(() -> {
                     hideTicketSpinner();
                     ticket.close();
-                }, 7000);
+                }, 10000);
                 success = ticket.printLayout(ticketLayoutManager.getLayout());
             } catch (Exception e) {
                 TRACE.d("TICKET EXCEPTION: " + e.getMessage());

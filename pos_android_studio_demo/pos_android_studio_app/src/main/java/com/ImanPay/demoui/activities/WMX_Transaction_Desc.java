@@ -283,12 +283,10 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         card = intent.getStringExtra("card");
         redtarj = intent.getStringExtra("redtarj");
         tipotarjeta = intent.getStringExtra("tipotarj");
-        TRACE.d("RESULT TIPO: " + tipotarjeta);
         if(tipotarjeta.equals("null"))
         {
             tipotarjeta="Crédito";
         }
-        TRACE.d("RESULT TIPO: " + tipotarjeta);
         status = intent.getStringExtra("status");
         propina = intent.getStringExtra("propina");
         total = intent.getStringExtra("total");
@@ -296,6 +294,10 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         aid = intent.getStringExtra("aid");
         arqc = intent.getStringExtra("arqc");
         card_emisor = intent.getStringExtra("emisor");
+        if(card_emisor.equals("null"))
+        {
+            card_emisor="NA";
+        }
         trans_id = intent.getIntExtra("id", 0);
         nip = intent.getStringExtra("nip");
         entrada = intent.getStringExtra("entrada");
@@ -371,6 +373,9 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         }else if (redtarj.toUpperCase(Locale.ROOT).equals("AMEX")) {
             card_provider = "AMEX";
             tp_iv_process.setImageResource(R.drawable.amex);
+        }else {
+            card_provider = "NA";
+            tp_iv_process.setImageResource(R.drawable.internacional);
         }
         tp_tv_AID.setText(aid);
         tp_tv_ARQC.setText(arqc);

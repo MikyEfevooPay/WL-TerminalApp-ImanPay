@@ -99,6 +99,10 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
         card = intent.getStringExtra("card");
         redtarj = intent.getStringExtra("redtarj");
         tipotarjeta = intent.getStringExtra("tipotarj");
+        if(tipotarjeta.equals("null"))
+        {
+            tipotarjeta="Crédito";
+        }
         status = intent.getStringExtra("status");
         propina=intent.getStringExtra("propina");
         total=intent.getStringExtra("total");
@@ -158,6 +162,9 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
             cp_iv_process.setImageResource(R.drawable.visa);
         }else if(redtarj.toUpperCase(Locale.ROOT).equals("AMEX")){
             cp_iv_process.setImageResource(R.drawable.amex);
+        }else {
+            card_provider = "NA";
+            cp_iv_process.setImageResource(R.drawable.internacional);
         }
 
         cp_tv_tipotarjeta.setText("Tarjeta "+tipotarjeta);

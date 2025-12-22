@@ -38,6 +38,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class WMX_Final_Historial_Ticket extends BaseActivity implements View.OnClickListener {
@@ -263,15 +264,15 @@ public class WMX_Final_Historial_Ticket extends BaseActivity implements View.OnC
                 }
                 if(object1.getString("redtarj").toUpperCase().equals("VISA")){
                     visacount++;
-                } else if(object1.getString("redtarj").equals("MC")){
+                } else if(object1.getString("redtarj").toUpperCase().equals("MC")){
                     mccount++;
 
-                } else if(object1.getString("redtarj").equals("AMEX")){
+                } else if(object1.getString("redtarj").toUpperCase().equals("AMEX")){
                     amexcount++;
                 } else {
                     otrocount++;
                 }
-                if(object1.getString("tipotarj").contains("bito")){
+                if(object1.getString("tipotarj").toUpperCase().contains("BITO")){
                     debitocount++;
                 } else {
                     creditocount++;
