@@ -5,9 +5,13 @@ import android.database.CharArrayBuffer;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.view.View;
 
@@ -16,6 +20,7 @@ import com.dspread.print.device.PrinterDevice;
 import com.dspread.print.device.PrinterManager;
 
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
 
 public class Ticket {
 
@@ -300,7 +305,22 @@ public class Ticket {
             if (Layout == null)
                 throw new RemoteException("No hay layout disponible");
             mPrinter.setPrinterGrey(110);
-            mPrinter.printBitmap(this.ctx, Utils.viewToBitmap(Layout));
+            Bitmap bmp = Utils.viewToBitmap(Layout);
+            bmp = applyPrinterGrey(bmp);
+            Bitmap finalBmp = bmp;
+            Handler uiHandler = new Handler(Looper.getMainLooper());
+            CountDownLatch latch = new CountDownLatch(1);
+            uiHandler.post(() -> {
+                try {
+                    mPrinter.printBitmap(this.ctx, finalBmp);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    latch.countDown();
+                }
+            });
+            latch.await();
+            Thread.sleep(1000);
             return true;
         } catch (Exception e) {
             TRACE.d("PRINT ERROR:" + e.getMessage());
@@ -308,15 +328,32 @@ public class Ticket {
             return false;
         }
     }
-
+    public Bitmap applyPrinterGrey(Bitmap original) {
+        int w = original.getWidth();
+        int h = original.getHeight();
+        Bitmap result = original.copy(Bitmap.Config.ARGB_8888, true);
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w - 1; x++) {
+                int pixel = original.getPixel(x, y);
+                // Detectar negro (pero no gris claro)
+                if (Color.red(pixel) < 40 &&
+                        Color.green(pixel) < 40 &&
+                        Color.blue(pixel) < 40) {
+                    // Engrosar SOLO 1 pixel a la derecha
+                    result.setPixel(x + 1, y, Color.BLACK);
+                }
+            }
+        }
+        return result;
+    }
     public void close() {
         if (mPrinter == null) return;
-            try {
-                mPrinter.stopPrint();
-                mPrinter.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            mPrinter.stopPrint();
+            mPrinter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isPrinterAvailable() {

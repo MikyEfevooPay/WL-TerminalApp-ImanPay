@@ -110,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10px"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/ll_ticket_tip_historial">
 
             <TextView
                 android:id="@+id/lbl_historial_propina_title"

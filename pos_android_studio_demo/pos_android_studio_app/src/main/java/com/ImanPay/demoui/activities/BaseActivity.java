@@ -194,7 +194,6 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
 
     public void PrintTicket() {
         runOnUiThread(() -> {
-            boolean success = false;
             if (!ticket.isPrinterAvailable())
                 return;
             if(!ticket_progress.isShowing()) ticket_progress.show();
@@ -207,18 +206,25 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
 
                 // Se agrega un posdelay en caso de que haya un error que la libreria no este
                 // catcheando para ocultar el spinner
-                ticketHandler.postDelayed(() -> {
-                    hideTicketSpinner();
-                    ticket.close();
-                }, 10000);
-                success = ticket.printLayout(ticketLayoutManager.getLayout());
+                //ticketHandler.postDelayed(() -> {
+                //    if(ticketLayoutManager.getLayout() == null){
+                //        showAlert("informative","entra en el postdelayed");
+                //        hideTicketSpinner();
+                //    }
+                //    ticket.close();
+                //}, 20000);
+                new Thread(() -> {
+                    boolean success;
+                    success = ticket.printLayout(ticketLayoutManager.getLayout());
+                    if (!success) {
+                        hideTicketSpinner();
+                        ticket.close();
+                        //ticketHandler.removeCallbacksAndMessages(null);
+                    }
+                }).start();
             } catch (Exception e) {
                 TRACE.d("TICKET EXCEPTION: " + e.getMessage());
                 e.printStackTrace();
-            }
-            if (!success) {
-                hideTicketSpinner();
-                ticketHandler.removeCallbacksAndMessages(null);
             }
         });
     }
@@ -257,7 +263,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
     protected String getFinalErrorMessage(QPOSService.Error status) {
         Map.Entry<QPOSService.Error, String> getMessage = Utils.errorPosDictionary.entrySet().stream()
                 .filter(x -> status == x.getKey()).findAny().orElse(null);
-        return getMessage != null ? getMessage.getValue() : "Ha ocurrido un error desconocido";
+        return getMessage != null ? getMessage.getValue() : "Intenta nuevamente";
     }
 
     @Override
@@ -383,15 +389,15 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
 
         final Runnable runnable = new Runnable() {
             public void run() {
-                if (count[0]++ < 2) {
+                if (count[0]++ < 1) {
                     View layout = ConfigToastLayout(type, title, desc);
                     Toast toast = new Toast(getApplicationContext());
                     toast.setGravity(Gravity.FILL_HORIZONTAL, 0, 0);
                     toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setDuration(Toast.LENGTH_SHORT);
                     toast.setView(layout);
                     toast.show();
-                    handler.postDelayed(this, 3000);
+                    handler.postDelayed(this, 1000);
                 }
             }
         };
@@ -477,7 +483,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ITicket,
             if(entrada.equals("ICC")) return  getString(R.string.wmx_transaction_ticket_client_sign);
         }
         if (nipParsed == 1) return getString(R.string.wmx_transaction_ticket_electronic_sign);
-       return null;
+        return null;
     }
 
     public void show_calendar() {

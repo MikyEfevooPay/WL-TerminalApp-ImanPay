@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="25px"
+    android:paddingTop="28px"
+    android:paddingBottom="28px"
+    android:paddingRight="25px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tp_warning"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_marginBottom="18px"
+            app:srcCompat="@drawable/tarjeta_icono" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyt_ticket_totales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="3dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0px"
+            android:fontFamily="@font/dm_sans_bold"
+            android:gravity="center"
+            android:text="Recuerda"
+            android:textAlignment="center"
+            android:textColor="#0F0F0F"
+            android:textSize="40px"
+            android:paddingBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:gravity="center"
+            android:text="La actualización solo incluye transacciones visibles en el &quot;Historial&quot;. Si hay movimientos pendientes, espera un aprox de 15 minutos."
+            android:textColor="#5A5A5A"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_alert_cortecaja_reprocesar"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="#0083BE"
+        android:fontFamily="@font/dm_sans_bold"
+        android:minHeight="50dip"
+        android:stateListAnimator="@null"
+        android:text="Reprocesar corte"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="30px" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_alert_cortecaja_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/transparent"
+        android:fontFamily="@font/dm_sans_bold"
+        android:stateListAnimator="@null"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@color/ep_color_black"
+        android:textSize="30px" />
+
+
+</LinearLayout>

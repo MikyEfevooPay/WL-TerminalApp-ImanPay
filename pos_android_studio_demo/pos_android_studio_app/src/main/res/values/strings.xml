@@ -272,7 +272,7 @@
     <string name="title_connected_devices">Connected Devices</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="select_disconnect_device">select a device to disconnect</string>
-    <string name="card_different">Different card invalid operation</string>
+    <string name="card_different">Tarjeta distinta a la de la compra</string>
     <string name="used">used:</string>
     <string name="hours">hours</string>
     <string name="minute">minutes</string>
@@ -395,7 +395,7 @@
     <string name="wmx_ticket_tip">Propina</string>
     <string name="wmx_ticket_total">Total:</string>
     <string name="wmx_ticket_electronic_sign">Firmado electrónico</string>
-    <string name="wmx_ticket_contact_less_sign">Autorizado sin firma vía contactless </string>
+    <string name="wmx_ticket_contact_less_sign">Autorizado con firma digitalizada vía contactless </string>
     <string name="wmx_ticket_physic_sign">Autorizado de forma Electrónica mediante firma física o número de identificador personal</string>
     <string name="wmx_ticket_footer">Por este pagaré me obligo incondicionalmente a pagar a la orden del banco acreditante el importe de este título. Este pagaré procede del contrato de apertura de crédito que el banco acreditante y el tarjetahabiente tienen celebrado.</string>
     <string name="wmx_ticket_resume_end">FIN DEL RESUMEN</string>
@@ -421,7 +421,7 @@
     <string name="wmx_transaction_CANMSI">Cancelación MSI</string>
     <string name="wmx_ajustes_initialization">Activación Manual</string>
     <string name="wmx_transaction_ticket_client_sign">Autorizado de forma Física mediante firma o número de identificación personal.</string>
-    <string name="wmx_transaction_ticket_contactless_sign">Autorizado sin firma vía contactless</string>
+    <string name="wmx_transaction_ticket_contactless_sign">Autorizado con firma digitalizada vía contactless</string>
     <string name="wmx_transaction_ticket_electronic_sign">Autorizado vía firma electrónica</string>
     <string name="wmx_not_network_connection_title">Tu terminal no esta conectado a internet</string>
     <string name="wmx_not_network_connection_subtitle">Para solucionarlo:</string>

@@ -38,7 +38,8 @@ public class TicketLayoutManager {
             txt_ticket_credito_title, txt_ticket_total_transacciones_title;
     private LinearLayout lyt_ticket_sign, lyt_ticket_separator_tiny_commerce, lyt_ticket_resumen_venta;
     private TableLayout table_ticket_resumen_venta;
-    private TableRow tbl_ticket_tip;
+    private TableRow tbl_ticket_tip,tr_propina,tr_propina_historial;
+
 
     public View getLayout() {
         return this.layout;
@@ -136,6 +137,9 @@ public class TicketLayoutManager {
                 txt_ticket_card.setText(ticket.getCard());
                 txt_ticket_card_type.setText(ticket.getCard_type() +"/"+ticket.getCard_emisor()+ "/" + ticket.getCard_provider());
                 txt_ticket_consumo_value.setText(ticket.getAmount());
+                if (conpropina.equals("0") && (ticket.getTip().contains(" 0.00") || ticket.getTip().contains("$0.00 MXN") )){
+                    tbl_ticket_tip.setVisibility(View.GONE);
+                }
                 txt_ticket_tip_value.setText(ticket.getTip());
                 txt_ticket_total_value.setText(ticket.getTotal());
                 txt_ticket_commerce_value.setText("COMERCIO " + CommerceNum);
@@ -167,6 +171,7 @@ public class TicketLayoutManager {
                 txt_ticket_total_value.getPaint().setAntiAlias(false);
                 txt_ticket_kposId = layout.findViewById(R.id.txt_ticket_kposId);
                 txt_ticket_kposId.getPaint().setAntiAlias(false);
+                tr_propina = layout.findViewById(R.id.tr_propina);
                 txt_company.setText(company);
                 txt_address_1.setText(Utils.isVacio(address,0)+" "+Utils.isVacio(address,1)+" "+Utils.isVacio(address,2) + " " + Utils.isVacio(address,3));
                 txt_address_2.setText(Utils.isVacio(address,4) + ", " +Utils.isVacio(address,5));
@@ -183,6 +188,9 @@ public class TicketLayoutManager {
                 txt_ticket_tip_title.getPaint().setAntiAlias(false);
                 txt_ticket_total_title = layout.findViewById(R.id.txt_ticket_total_title);
                 txt_ticket_total_title.getPaint().setAntiAlias(false);
+                if (conpropina.equals("0") && (ticket.getTip().contains(" 0.00") || ticket.getTip().contains("$0.00 MXN") )){
+                    tr_propina.setVisibility(View.GONE);
+                }
                 break;
             case HISTORIAL:
                 txt_company = layout.findViewById(R.id.txt_company);
@@ -264,6 +272,10 @@ public class TicketLayoutManager {
                 txt_ticket_total_transacciones_value.getPaint().setAntiAlias(false);
                 lyt_ticket_resumen_venta = layout.findViewById(R.id.lyt_ticket_resumen_venta);
                 table_ticket_resumen_venta = layout.findViewById(R.id.table_ticket_resumen_venta);
+                tr_propina_historial = layout.findViewById(R.id.tr_propina_historial);
+                if (conpropina.equals("0") && (ticket.getTip().contains(" 0.00") || ticket.getTip().contains("$0.00 MXN") )){
+                    tr_propina_historial.setVisibility(View.GONE);
+                }
 
                 txt_company.setText(company);
                 txt_address_1.setText(Utils.isVacio(address,0)+" "+Utils.isVacio(address,1)+" "+Utils.isVacio(address,2) + " " + Utils.isVacio(address,3));

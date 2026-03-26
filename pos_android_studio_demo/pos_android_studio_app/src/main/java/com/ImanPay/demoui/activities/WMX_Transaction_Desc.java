@@ -391,5 +391,10 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         dbManager.open();
         cursor = dbManager.fetch(ksn_posId);
 
+        String conpropina = cursor.getString(35);
+        String propinar = propina + " MXN";
+        if (conpropina.equals("0") && (propinar.contains(" 0.00") || propinar.contains("$0.00 MXN") )){
+            lyt_transaction_tip.setVisibility(View.GONE);
+        }
     }
 }
