@@ -239,4 +239,20 @@ public abstract class BasePen {
      * onDraw之前的操作
      */
     protected abstract void doPreDraw(Canvas canvas);
+
+    public void flushToCanvas(Canvas canvas) {
+        if (mHWPointList == null || mHWPointList.size() < 2) {
+            return;
+        }
+        // Dibujar todo lo acumulado hasta ahora al canvas permanente
+        mPaint.setStyle(Paint.Style.FILL);
+        mCurPoint = mHWPointList.get(0);
+        doPreDraw(canvas);
+
+        // Conservar solo el ÚLTIMO punto como punto de continuidad
+        // para que el siguiente segmento conecte correctamente
+        ControllerPoint lastPoint = mHWPointList.get(mHWPointList.size() - 1);
+        mHWPointList.clear();
+        mHWPointList.add(lastPoint); // punto de enlace para el siguiente segmento
+    }
 }

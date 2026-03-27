@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import com.ImanPay.demoui.R;
+import com.ImanPay.demoui.config.MotionElement;
 import com.ImanPay.demoui.config.PenConfig;
 import com.ImanPay.demoui.pen.BasePen;
 import com.ImanPay.demoui.pen.Eraser;
@@ -75,6 +76,10 @@ public class PaintView extends View {
     private int toolType = 0;  //记录手写笔类型：触控笔/手指
 
     private Eraser eraser;
+    private long mLastDrawTime = 0;
+    private static final long DRAW_INTERVAL_MS = 16;
+    private int mMoveEventCount = 0;
+    private static final int FLUSH_EVERY_N_EVENTS = 10;
 
     public PaintView(Context context) {
         this(context, null);
@@ -100,7 +105,7 @@ public class PaintView extends View {
         this.mWidth = width;
         this.mHeight = height;
 
-        mBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_4444);
+        mBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
         mStokeBrushPen = new SteelPen();
 
         initPaint();
@@ -157,30 +162,74 @@ public class PaintView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         toolType = event.getToolType(event.getActionIndex());
         if (!isFingerEnable && toolType != MotionEvent.TOOL_TYPE_STYLUS) {
             return false;
         }
-        if (isEraser) {
-            eraser.handleEraserEvent(event, mCanvas);
-        } else {
-            mStokeBrushPen.onTouchEvent(event, mCanvas);
-        }
 
         switch (event.getActionMasked()) {
+
             case MotionEvent.ACTION_DOWN:
                 isDrawing = false;
+                mMoveEventCount = 0;
+                if (isEraser) {
+                    eraser.handleEraserEvent(event, mCanvas);
+                } else {
+                    mStokeBrushPen.onTouchEvent(event, mCanvas);
+                }
+                invalidate();
                 break;
+
             case MotionEvent.ACTION_MOVE:
                 hasDraw = true;
                 mCanUndo = true;
                 isDrawing = true;
-                break;
+                mMoveEventCount++;
+
+                if (isEraser) {
+                    eraser.handleEraserEvent(event, mCanvas);
+                } else {
+                    // Puntos históricos del firmware de alta frecuencia
+                    int historySize = event.getHistorySize();
+                    for (int i = 0; i < historySize; i++) {
+                        MotionElement element = new MotionElement(
+                                event.getHistoricalX(0, i),
+                                event.getHistoricalY(0, i),
+                                event.getHistoricalPressure(0, i),
+                                event.getToolType(0)
+                        );
+                        mStokeBrushPen.onMove(element, mCanvas);
+                    }
+                    mStokeBrushPen.onTouchEvent(event, mCanvas);
+
+                    // CLAVE: vaciar la lista al canvas periódicamente
+                    // para que onDraw nunca itere más de ~10 puntos
+                    if (mMoveEventCount % FLUSH_EVERY_N_EVENTS == 0) {
+                        mStokeBrushPen.flushToCanvas(mCanvas);
+                    }
+                }
+
+                // Throttle de invalidate a 60fps
+                long now = System.currentTimeMillis();
+                if (now - mLastDrawTime >= DRAW_INTERVAL_MS) {
+                    mLastDrawTime = now;
+                    postInvalidateOnAnimation();
+                }
+                return true;
+
             case MotionEvent.ACTION_CANCEL:
                 isDrawing = false;
+                invalidate();
                 break;
+
             case MotionEvent.ACTION_UP:
+                if (!isEraser) {
+                    // Flush final antes del UP para limpiar lo que quedó pendiente
+                    mStokeBrushPen.flushToCanvas(mCanvas);
+                    mStokeBrushPen.onTouchEvent(event, mCanvas);
+                } else {
+                    eraser.handleEraserEvent(event, mCanvas);
+                }
                 if (mStepOperation != null && isDrawing) {
                     mStepOperation.addBitmap(mBitmap);
                 }
@@ -190,11 +239,13 @@ public class PaintView extends View {
                     mCallback.onOperateStatusChanged();
                 }
                 isDrawing = false;
+                mMoveEventCount = 0;
+                invalidate();
                 break;
+
             default:
                 break;
         }
-        invalidate();
         return true;
     }
 
@@ -414,7 +465,7 @@ public class PaintView extends View {
             this.mWidth = width;
             this.mHeight = height;
 
-            mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+            mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             restoreLastBitmap(bitmap, mBitmap);
             initCanvas();
             if (mStepOperation != null) {

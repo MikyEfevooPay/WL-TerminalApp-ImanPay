@@ -448,7 +448,8 @@ public class PaintActivity extends BaseActivity implements View.OnClickListener,
                     mHandler.obtainMessage(MSG_SAVE_FAILED).sendToTarget();
                 }
             } catch (Exception e) {
-
+                mHandler.obtainMessage(MSG_SAVE_FAILED).sendToTarget();
+                TRACE.d("Error al guardar firma: " +  TRACE.NEW_LINE + e.toString() );
             }
         }).start();
 
