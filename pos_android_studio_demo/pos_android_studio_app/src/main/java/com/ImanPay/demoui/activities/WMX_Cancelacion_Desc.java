@@ -244,7 +244,7 @@ public class WMX_Cancelacion_Desc extends BaseActivity  {
         }
 
         cp_tv_tipotarjeta.setText("Tarjeta "+tipotarjeta);
-        cp_tv_auth.setText(auth);
+        cp_tv_auth.setText(String.valueOf(trans_id));
         cp_tv_total.setText(total);
         cp_tv_card.setText("**** "+card);
         cp_tv_date_time.setText(date+" "+time);

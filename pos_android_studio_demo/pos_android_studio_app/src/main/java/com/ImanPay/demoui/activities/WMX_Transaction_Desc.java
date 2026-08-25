@@ -380,7 +380,7 @@ public class WMX_Transaction_Desc extends BaseActivity implements View.OnClickLi
         tp_tv_AID.setText(aid);
         tp_tv_ARQC.setText(arqc);
         tp_tv_tipotarjeta.setText("Tarjeta " + tipotarjeta);
-        tp_tv_auth.setText(auth);
+        tp_tv_auth.setText(String.valueOf(trans_id));
 
         tp_tv_total.setText(total + " MXN");
         tp_tv_card.setText("**** " + card);

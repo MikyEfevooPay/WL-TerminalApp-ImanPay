@@ -89,7 +89,7 @@ interface INTERNAL_QPOS_STATUS {
 
 public class WMX_Card extends BaseActivity implements View.OnClickListener {
 
-    private Button trading;
+    private Button trading,btn_reintentar,btn_Cancelar;
     private TextView Total_Amount;
     private EditText Pruebaedittext;
     private String Amount, AmountToShow;
@@ -114,7 +114,7 @@ public class WMX_Card extends BaseActivity implements View.OnClickListener {
              startTransaction;
 
     private String FinalPin = "";
-    private LinearLayout lin;
+    private LinearLayout lin, lin3, lin4;
 
     private String FinalTradeType = "";
 
@@ -212,9 +212,15 @@ public class WMX_Card extends BaseActivity implements View.OnClickListener {
         Total_Amount = (TextView) findViewById(R.id.wmx_text_total_Amount);
         Pruebaedittext = (EditText) findViewById(R.id.pruebaedittext);
         lin = findViewById(R.id.lyt_card);
+        lin3 = findViewById(R.id.lin3);
+        lin4 = findViewById(R.id.lin4);
         Total_Amount.setText(AmountToShow);
         trading = (Button) findViewById(R.id.WMX_btn_trade);
         trading.setOnClickListener(this);
+        btn_reintentar=(Button)findViewById(R.id.btn_reintentar);
+        btn_reintentar.setOnClickListener(this);
+        btn_Cancelar=(Button)findViewById(R.id.btn_Cancelar);
+        btn_Cancelar.setOnClickListener(this);
 
         mContext = this;
 
@@ -334,6 +340,11 @@ public class WMX_Card extends BaseActivity implements View.OnClickListener {
             }
             this.validateTransactionEmptyResponse++;
             esperarYCerrar();
+        } else if (code.equals("1A")) {
+            transactionCancel = true;
+            finishServices();
+            lin3.setVisibility(View.GONE);
+            lin4.setVisibility(View.VISIBLE);
         } else {
             TRACE.d("CALL TRANSACTION ERROR ENTRY");
             this.startTransaction = false;
@@ -396,6 +407,30 @@ public class WMX_Card extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.WMX_btn_trade:
                 onCancelTransaction();
+                break;
+            case R.id.btn_reintentar:
+                LottiePointsView.setVisibility(View.GONE);
+                LottieTerminalView.setVisibility(View.VISIBLE);
+                lin3.setVisibility(View.VISIBLE);
+                lin4.setVisibility(View.GONE);
+                tv_card_label_1.setText("Esperando medio de pago");
+                tv_card_label_2.setText("Inserta tarjeta, desliza o contactless");
+                trading.setVisibility(View.VISIBLE);
+                this.QPOS_STATUS = INTERNAL_QPOS_STATUS.DISCONNECTED;
+                enableTradingCancel(false);
+                this.successCancelTrade = false;
+                this.checkHistory = false;
+                this.startTransaction = false;
+                this.transactionCancel = false;
+                this.onOpenUartHandler = new Handler();
+                this.onWaitingUserHandler = new Handler();
+                this.validateTransactionErrorCount = 0;
+                this.validateTransactionEmptyResponse = 0;
+                initSDK();
+                break;
+            case R.id.btn_Cancelar:
+                startActivity(new Intent(mContext, WMX_Menu.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
                 break;
         }
     }

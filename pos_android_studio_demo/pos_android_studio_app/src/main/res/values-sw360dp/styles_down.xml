@@ -179,6 +179,7 @@
         <!--        <item name="colorPrimary">#fff</item>-->
         <!--        <item name="colorOnPrimary">#121212</item>-->
         <!--        <item name="colorOnSecondary">#1F45FF</item>-->
+        <item name="materialTimePickerTheme">@style/TimePickerTheme_estilo1</item>
     </style>
 
     <style name="MaterialCalendarThemeBackground" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
@@ -189,7 +190,7 @@
         <item name="colorSurface">#fff</item>
         <item name="colorOnSurface">#121212</item>
         <!--        <item name="colorPrimary">#92A8FF</item>-->
-        <item name="colorPrimary">#55ADB0</item>
+        <item name="colorPrimary">@color/secundary_color</item>
         <item name="colorOnPrimary">#fff</item>
 
     </style>
@@ -220,8 +221,18 @@
     </style>
     <!--  selected color  -->
     <style name= "CustomSelected" parent="Widget.MaterialComponents.MaterialCalendar.Day.Selected">
-        <item name="itemFillColor">#55ADB0</item>
-        <item name="itemStrokeColor">#55ADB0</item>
+        <item name="itemFillColor">@color/secundary_color</item>
+        <item name="itemStrokeColor">@color/secundary_color</item>
+    </style>
+
+    <style name="TimePickerTheme_estilo1" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/secundary_color</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">@color/secundary_color</item>
+
+        <item name="fontFamily">@font/dm_sans</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
     </style>
 
     <!-- ____________________ styles calendar ____________________-->

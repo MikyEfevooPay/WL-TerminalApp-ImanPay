@@ -24,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ImanPay.demoui.widget.DateTimeRangeDialogHelper;
 import com.android.volley.Request;
 import com.ImanPay.demoui.R;
 import com.ImanPay.demoui.interfaces.FetchEntity;
@@ -66,6 +67,8 @@ public class WMX_Transaccion extends BaseActivity implements View.OnClickListene
     Intent intent;
     Context mContext;
     private String ksn_posId, _ARQC, subtotal, propina, total;
+    private String hora_inicio="00:00";
+    private String hora_fin="23:59";
     private WMX_llamada_dukpt jsondukpt=new WMX_llamada_dukpt();
 
     private CompletableFuture<Boolean> hasTransactionFoundPromise;
@@ -73,6 +76,9 @@ public class WMX_Transaccion extends BaseActivity implements View.OnClickListene
     private final String TRANSACTION_HISTORY = "getTransactionHistory";
     private final String HISTORY_KEY_AMEX = "getCancelacionHistoryAmex";
     public static ProgressDialog spinner;
+    private final DateTimeRangeDialogHelper dateTimeHelper = new DateTimeRangeDialogHelper();
+    private static final SimpleDateFormat FORMATO_FECHA =
+            new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     JSONArray jsonArray;
 
     @SuppressLint("NewApi")
@@ -272,8 +278,20 @@ public class WMX_Transaccion extends BaseActivity implements View.OnClickListene
     @Override
     public void onCalendarLinstener(){
         toolbar_btn_calendar.setEnabled(false);
+        //dateTimeHelper.mostrar(this,toolbar_btn_calendar, (inicio, fin, hIniH, hIniM, hFinH, hFinM) -> {
+        //    TRACE.d("Rango seleccionado: inicio " + FORMATO_FECHA.format(inicio.getTime()) + " " + String.format(Locale.getDefault(), "%02d:%02d", hIniH, hIniM) + ", fin " + FORMATO_FECHA.format(fin.getTime()) + " " + String.format(Locale.getDefault(), "%02d:%02d", hFinH, hFinM));
+        //    date1=inicio.getTime();
+        //    date2=fin.getTime();
+        //    hora_inicio=String.format(Locale.getDefault(), "%02d:%02d", hIniH, hIniM);
+        //    hora_fin=String.format(Locale.getDefault(), "%02d:%02d", hFinH, hFinM);
+        //    getFetchManager().CallById(TRANSACTION_HISTORY);
+        //    getFetchManager().CallById(HISTORY_KEY_AMEX);
+        //    if(transactions.size() > 0) transactions.clear();
+        //    spinner.show();
+        //    RefreshBuscador();
+        //});
         dpDate.show(getSupportFragmentManager(), "date");
-    };
+    }
 
 
     public void DatePickerListener() {

@@ -57,7 +57,7 @@ public class TransactionItemAdapter2 extends RecyclerView.Adapter<TransactionIte
     @SuppressLint("NewApi")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        myViewHolder.tv_auth.setText(_transactions.get(i).get_approve());
+        myViewHolder.tv_auth.setText(String.valueOf(_transactions.get(i).get_id()));
         myViewHolder.tv_date2.setText(_transactions.get(i).get_date());
         myViewHolder.tv_amount2.setText(_transactions.get(i).get_total());
         myViewHolder.tv_time.setText(_transactions.get(i).get_time());
